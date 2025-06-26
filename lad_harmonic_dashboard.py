@@ -29,6 +29,7 @@ col1, col2 = st.columns(2)
 
 # Resonance waveform
 fig1 = px.line(df, x="Game", y="Resonance", markers=True, color_discrete_sequence=["deepskyblue"])
+fig1.update_xaxes(type='category', tickmode='linear', tick0=1, dtick=1)
 fig1.add_scatter(x=df[df["Nodal"] == "Yes"]["Game"], y=df[df["Nodal"] == "Yes"]["Resonance"],
                  mode='markers', marker=dict(size=12, color='gold', line=dict(color='black', width=1)), name="Nodal")
 fig1.add_scatter(x=df[df["Echo"] == "Yes"]["Game"], y=df[df["Echo"] == "Yes"]["Resonance"],
@@ -40,6 +41,7 @@ fig1.update_xaxes(type='category', tickmode='linear', tick0=1, dtick=1)
 
 # Collapse metrics
 fig2 = px.line(df, x="Game", y=["Neutron", "Proton", "Electron"], markers=True)
+fig2.update_xaxes(type='category', tickmode='linear', tick0=1, dtick=1)
 fig2.add_scatter(x=df[df["Collapse"] == "Yes"]["Game"], y=df[df["Collapse"] == "Yes"]["Neutron"],
                  mode='markers', marker=dict(size=12, color='red', symbol='triangle-down'), name="Collapse")
 fig2.update_layout(title=f"Octave {octave} – Collapse Metrics", xaxis_title="Game", yaxis_title="Metric Value")
